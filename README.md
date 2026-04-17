@@ -10,8 +10,9 @@
 A comprehensive C++ revision guide covering fundamentals to advanced topics through granular, well-documented code examples.
 
 ## Progress
-Currently: 10/30 Steps Completed
+Currently: 15/30 Steps Completed
 
+### Phase 1: Beginner
 | Step | Topic | Description |
 |---|---|---|
 | 01 | Hello World | Basic structure and output |
@@ -24,6 +25,11 @@ Currently: 10/30 Steps Completed
 | 08 | For Loops | Iteration with fixed counts |
 | 09 | While Loops | while and do-while loops |
 | 10 | Functions | Reusable code blocks |
+| 11 | Arrays | Fixed-size collections |
+| 12 | Strings | Text manipulation with std::string |
+| 13 | Pointers | Addresses and references |
+| 14 | Scope | Variable lifetime and static |
+| 15 | Calculator | Final project for Beginner phase |
 
 ## How to Run
 Use any C++ compiler (g++, clang, or MSVC):
