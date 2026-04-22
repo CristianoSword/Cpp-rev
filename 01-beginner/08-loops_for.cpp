@@ -1,24 +1,22 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #8: For Loops
  * Repeating actions for a fixed number of times.
  */
 
 int main() {
-    cout << "Counting from 1 to 10:" << endl;
+    std::cout << "Counting from 1 to 10:" << std::endl;
 
     for (int i = 1; i <= 10; i++) {
-        cout << i << " ";
+        std::cout << i << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
 
     // Nested for loop (Multiplication Table for 2)
-    cout << "Multiplication Table for 2:" << endl;
+    std::cout << "Multiplication Table for 2:" << std::endl;
     for (int j = 1; j <= 10; j++) {
-        cout << "2 x " << j << " = " << 2 * j << endl;
+        std::cout << "2 x " << j << " = " << 2 * j << std::endl;
     }
 
     return 0;
