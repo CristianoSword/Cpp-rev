@@ -1,35 +1,33 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 /**
  * C++ REVISION #12: Strings
  * Working with the std::string class for text manipulation.
  */
 
 int main() {
-    string greeting = "Hello";
-    string name = "Cristiano";
+    std::string greeting = "Hello";
+    std::string name = "Cristiano";
 
     // Concatenation
-    string message = greeting + ", " + name + "!";
-    cout << message << endl;
+    std::string message = greeting + ", " + name + "!";
+    std::cout << message << std::endl;
 
     // String length
-    cout << "Message length: " << message.length() << endl;
+    std::cout << "Message length: " << message.length() << std::endl;
 
     // String indexing
-    cout << "First character: " << message[0] << endl;
+    std::cout << "First character: " << message[0] << std::endl;
 
     // Substring (position, length)
-    string sub = message.substr(0, 5);
-    cout << "Substring: " << sub << endl;
+    std::string sub = message.substr(0, 5);
+    std::cout << "Substring: " << sub << std::endl;
 
     // Finding text
-    size_t found = message.find("Cristiano");
-    if (found != string::npos) {
-        cout << "'Cristiano' found at index: " << found << endl;
+    std::size_t found = message.find("Cristiano");
+    if (found != std::string::npos) {
+        std::cout << "'Cristiano' found at index: " << found << std::endl;
     }
 
     return 0;
