@@ -5,10 +5,12 @@
 #include <mutex>
 #include <memory>
 #include <functional>
-#include <map>
+#include <unordered_map>
 #include <sstream>
 #include <chrono>
 #include <ctime>
+#include <queue>
+#include <condition_variable>
 
 // Windows specific socket library (C Interop)
 #include <winsock2.h>
@@ -93,7 +95,7 @@ struct HttpRequest {
 template <typename HandlerFunction>
 class Router {
 private:
-    std::map<std::string, HandlerFunction> routes;
+    std::unordered_map<std::string, HandlerFunction> routes;
 
 public:
     void addRoute(const std::string& path, HandlerFunction handler) {
@@ -159,6 +161,53 @@ void handleClient(ClientSocketRAII clientSock) {
 }
 
 
+// --- 7. Thread Pool ---
+class ThreadPool {
+private:
+    std::vector<std::thread> workers;
+    std::queue<std::function<void()>> tasks;
+    std::mutex queueMutex;
+    std::condition_variable condition;
+    bool stop = false;
+
+public:
+    ThreadPool(size_t threads) {
+        for(size_t i = 0; i < threads; ++i) {
+            workers.emplace_back([this] {
+                while(true) {
+                    std::function<void()> task;
+                    {
+                        std::unique_lock<std::mutex> lock(this->queueMutex);
+                        this->condition.wait(lock, [this] { return this->stop || !this->tasks.empty(); });
+                        if(this->stop && this->tasks.empty()) return;
+                        task = std::move(this->tasks.front());
+                        this->tasks.pop();
+                    }
+                    task();
+                }
+            });
+        }
+    }
+
+    template<class F>
+    void enqueue(F&& f) {
+        {
+            std::unique_lock<std::mutex> lock(queueMutex);
+            tasks.emplace(std::forward<F>(f));
+        }
+        condition.notify_one();
+    }
+
+    ~ThreadPool() {
+        {
+            std::unique_lock<std::mutex> lock(queueMutex);
+            stop = true;
+        }
+        condition.notify_all();
+        for(std::thread &worker: workers) worker.join();
+    }
+};
+
 // --- Server Setup (C Interop with Winsock API) ---
 void runServer() {
     WSADATA wsaData;
@@ -190,13 +239,17 @@ void runServer() {
     serverLogger.log("HTTP Server running horizontally on port 8080. Awaiting connections...");
     serverLogger.log("Try visiting http://localhost:8080/hello in your browser!");
 
+    // Create a thread pool with 4 concurrent workers
+    ThreadPool pool(4);
+
     // Main Accept Loop
     while (true) {
         SOCKET clientSocket = accept(serverSocket, nullptr, nullptr);
         if (clientSocket != INVALID_SOCKET) {
-            // We spawn a detached thread moving the RAII socket ownership
-            std::thread t(handleClient, ClientSocketRAII(clientSocket));
-            t.detach(); // Fire and forget. The thread will handle memory independently.
+            // We enqueue the connection into the ThreadPool instead of spawning an unbounded number of detached threads.
+            pool.enqueue([clientSocket]() {
+                handleClient(ClientSocketRAII(clientSocket));
+            });
         }
     }
 
