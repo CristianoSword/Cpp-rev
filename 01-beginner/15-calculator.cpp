@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #15 PROJECT: Simple Calculator
  * A practical example combining variables, I/O, and switch-case.
@@ -11,36 +9,36 @@ int main() {
     double num1, num2;
     char op;
 
-    cout << "--- C++ Simple Calculator ---" << endl;
-    
-    cout << "Enter first number: ";
-    cin >> num1;
+    std::cout << "--- C++ Simple Calculator ---" << std::endl;
 
-    cout << "Enter operator (+, -, *, /): ";
-    cin >> op;
+    std::cout << "Enter first number: ";
+    std::cin >> num1;
 
-    cout << "Enter second number: ";
-    cin >> num2;
+    std::cout << "Enter operator (+, -, *, /): ";
+    std::cin >> op;
 
-    cout << "\nResult: ";
+    std::cout << "Enter second number: ";
+    std::cin >> num2;
+
+    std::cout << "\nResult: ";
     switch (op) {
         case '+':
-            cout << num1 + num2 << endl;
+            std::cout << num1 + num2 << std::endl;
             break;
         case '-':
-            cout << num1 - num2 << endl;
+            std::cout << num1 - num2 << std::endl;
             break;
         case '*':
-            cout << num1 * num2 << endl;
+            std::cout << num1 * num2 << std::endl;
             break;
         case '/':
             if (num2 != 0)
-                cout << num1 / num2 << endl;
+                std::cout << num1 / num2 << std::endl;
             else
-                cout << "Error! Division by zero." << endl;
+                std::cout << "Error! Division by zero." << std::endl;
             break;
         default:
-            cout << "Invalid operator." << endl;
+            std::cout << "Invalid operator." << std::endl;
             break;
     }
 
