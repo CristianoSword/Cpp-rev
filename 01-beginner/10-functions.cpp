@@ -8,7 +8,7 @@
 
 // Function Declaration (Prototype)
 int add(int a, int b);
-void greet(std::string name);
+void greet(const std::string& name);
 
 int main() {
     greet("Cristiano");
@@ -24,6 +24,6 @@ int add(int a, int b) {
     return a + b;
 }
 
-void greet(std::string name) {
+void greet(const std::string& name) {
     std::cout << "Welcome to the C++ Guide, " << name << "!" << std::endl;
 }
