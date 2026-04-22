@@ -30,9 +30,10 @@ public:
 
     // With mutex: Safe and synchronized!
     void depositSafe(int amount) {
-        // ALWAYS use lock_guard instead of mtx.lock() and mtx.unlock() manually.
-        // It uses RAII to automatically unlock when the function ends (even if an exception happens!)
-        std::lock_guard<std::mutex> lock(mtx);
+        // ALWAYS use scoped_lock (C++17) instead of mtx.lock() and mtx.unlock() manually.
+        // It uses RAII to automatically unlock when the function ends (even if an exception happens!).
+        // std::scoped_lock is strictly better than std::lock_guard as it prevents deadlocks with multiple mutexes.
+        std::scoped_lock lock(mtx);
         
         int current = balance;
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
