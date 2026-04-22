@@ -12,7 +12,7 @@ int main() {
     std::cout << "Addition: " << a + b << std::endl;
     std::cout << "Subtraction: " << a - b << std::endl;
     std::cout << "Multiplication: " << a * b << std::endl;
-    std::cout << "Division: " << (double)a / b << std::endl; // Type casting for precision
+    std::cout << "Division: " << static_cast<double>(a) / b << std::endl; // C++ static_cast for precision
     std::cout << "Remainder (Modulo): " << a % b << std::endl;
 
     // Increment / Decrement
