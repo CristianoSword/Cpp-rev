@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
+#include <utility>
 
 // Lesson 07: Basic Templates
-// 
+//
 // Templates allow you to write generic code that works with any data type.
 // Instead of writing a function for 'int' and another identical one for 'float',
 // you write ONE template, and the compiler generates the variations as needed.
 
 // 1. Function Template
 // Conceptually: T is a placeholder for a type.
+// We pass by const& so we don't copy heavy types (e.g. std::string) and
+// return by const& so we don't copy the result either.
 template <typename T>
-T getMaximum(T a, T b) {
-    if (a > b) {
-        return a;
-    }
-    return b;
+const T& getMaximum(const T& a, const T& b) {
+    return (a > b) ? a : b;
 }
 
 // 2. Class Template
@@ -26,40 +26,40 @@ private:
 
 public:
     // Constructor taking the generic type
-    Box(T initialItem) : item(initialItem) {}
+    explicit Box(T initialItem) : item(std::move(initialItem)) {}
 
-    T getItem() const {
+    const T& getItem() const {
         return item;
     }
 
     void setItem(T newItem) {
-        item = newItem;
+        item = std::move(newItem);
     }
 
     void printItem() const {
-        std::cout << "Box contains: " << item << std::endl;
+        std::cout << "Box contains: " << item << '\n';
     }
 };
 
 int main() {
-    std::cout << "--- Lesson 07: Basic Templates ---" << std::endl;
+    std::cout << "--- Lesson 07: Basic Templates ---" << '\n';
 
     // --- Testing Function Template ---
-    std::cout << "\n[Function Templates]" << std::endl;
-    
+    std::cout << "\n[Function Templates]" << '\n';
+
     // The compiler deduces T = int
-    std::cout << "Max of 5 and 10: " << getMaximum(5, 10) << std::endl;
-    
+    std::cout << "Max of 5 and 10: " << getMaximum(5, 10) << '\n';
+
     // The compiler deduces T = double
-    std::cout << "Max of 3.14 e 2.71: " << getMaximum(3.14, 2.71) << std::endl;
-    
+    std::cout << "Max of 3.14 and 2.71: " << getMaximum(3.14, 2.71) << '\n';
+
     // The compiler deduces T = std::string
     std::string word1 = "Apple";
     std::string word2 = "Zebra";
-    std::cout << "Max alphabetically: " << getMaximum(word1, word2) << std::endl;
+    std::cout << "Max alphabetically: " << getMaximum(word1, word2) << '\n';
 
     // --- Testing Class Template ---
-    std::cout << "\n[Class Templates]" << std::endl;
+    std::cout << "\n[Class Templates]" << '\n';
 
     // For classes, you usually have to explicitly state the type in angle brackets < >.
     Box<int> intBox(42);
