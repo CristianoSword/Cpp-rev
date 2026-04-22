@@ -38,7 +38,7 @@ public:
 };
 
 int main() {
-    std::cout << "--- Lesson 06: Operator Overloading ---" << std::endl;
+    std::cout << "--- Lesson 06: Operator Overloading ---" << '\n';
 
     Vector2D pos1(10.5f, 5.0f);
     Vector2D pos2(2.0f, -1.0f);
@@ -47,14 +47,14 @@ int main() {
     Vector2D result = pos1 + pos2;
 
     // Using the overloaded '<<' operator
-    std::cout << "Position 1: " << pos1 << std::endl;
-    std::cout << "Position 2: " << pos2 << std::endl;
-    std::cout << "Result of P1 + P2: " << result << std::endl;
+    std::cout << "Position 1: " << pos1 << '\n';
+    std::cout << "Position 2: " << pos2 << '\n';
+    std::cout << "Result of P1 + P2: " << result << '\n';
 
     // Using the overloaded '==' operator
     Vector2D pos3(10.5f, 5.0f);
-    std::cout << "\nIs pos1 equal to pos2? " << (pos1 == pos2 ? "Yes" : "No") << std::endl;
-    std::cout << "Is pos1 equal to pos3? " << (pos1 == pos3 ? "Yes" : "No") << std::endl;
+    std::cout << "\nIs pos1 equal to pos2? " << (pos1 == pos2 ? "Yes" : "No") << '\n';
+    std::cout << "Is pos1 equal to pos3? " << (pos1 == pos3 ? "Yes" : "No") << '\n';
 
     return 0;
 }
