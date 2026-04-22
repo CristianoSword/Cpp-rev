@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #6: Selection (if/else)
  * Controlling the flow of the program with conditions.
@@ -9,25 +7,25 @@ using namespace std;
 
 int main() {
     int score;
-    cout << "Enter your score (0-100): ";
-    cin >> score;
+    std::cout << "Enter your score (0-100): ";
+    std::cin >> score;
 
     if (score >= 90) {
-        cout << "Grade: A" << endl;
-    } 
+        std::cout << "Grade: A" << std::endl;
+    }
     else if (score >= 70) {
-        cout << "Grade: B" << endl;
-    } 
+        std::cout << "Grade: B" << std::endl;
+    }
     else if (score >= 50) {
-        cout << "Grade: C" << endl;
-    } 
+        std::cout << "Grade: C" << std::endl;
+    }
     else {
-        cout << "Grade: F" << endl;
+        std::cout << "Grade: F" << std::endl;
     }
 
     // Logical AND (&&), OR (||), NOT (!)
     if (score >= 50 && score <= 100) {
-        cout << "You passed!" << endl;
+        std::cout << "You passed!" << std::endl;
     }
 
     return 0;
