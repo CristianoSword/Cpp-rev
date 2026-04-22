@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 // Lesson 09 (Advanced): Design Patterns in C++
 // 
@@ -12,6 +13,9 @@
 
 // ==========================================
 // 1. Singleton Pattern
+// Note: In modern C++, Singleton is often considered an anti-pattern because
+// it hides dependencies and makes unit testing difficult. Dependency Injection
+// is generally preferred. However, it is still important to know.
 // ==========================================
 class DatabaseConnection {
 private:
@@ -64,22 +68,31 @@ public:
 class YouTubeChannel {
 private:
     std::string channelName;
-    std::vector<ISubscriber*> subscribers;
+    // Use weak_ptr to avoid cyclic references and dangling pointers
+    std::vector<std::weak_ptr<ISubscriber>> subscribers;
 
 public:
     YouTubeChannel(std::string name) : channelName(name) {}
 
-    void subscribe(ISubscriber* sub) {
+    void subscribe(std::shared_ptr<ISubscriber> sub) {
         subscribers.push_back(sub);
     }
 
     void uploadVideo(std::string title) {
         std::cout << "\n[" << channelName << "] Uploaded new video: " << title << std::endl;
-        std::cout << "Notifying " << subscribers.size() << " subscribers..." << std::endl;
         
-        for (auto sub : subscribers) {
-            sub->update(title); // Polymorphic call!
+        // Clean up expired weak_ptrs while notifying active ones
+        int activeCount = 0;
+        for (auto it = subscribers.begin(); it != subscribers.end(); ) {
+            if (auto spt = it->lock()) {
+                spt->update(title); // Polymorphic call!
+                activeCount++;
+                ++it;
+            } else {
+                it = subscribers.erase(it); // Remove dead subscribers
+            }
         }
+        std::cout << "Notified " << activeCount << " active subscribers." << std::endl;
     }
 };
 
@@ -103,13 +116,20 @@ int main() {
     std::cout << "\n[2. Observer Testing]" << std::endl;
     YouTubeChannel myChannel("Cpp Masters");
     
-    User alice("Alice");
-    User bob("Bob");
+    // Using shared_ptr instead of raw pointers for automatic memory management
+    auto alice = std::make_shared<User>("Alice");
     
-    myChannel.subscribe(&alice);
-    myChannel.subscribe(&bob);
-    
-    myChannel.uploadVideo("Advanced Templates Explained!");
+    {
+        auto bob = std::make_shared<User>("Bob");
+        myChannel.subscribe(alice);
+        myChannel.subscribe(bob);
+        
+        std::cout << "-> Uploading video while Bob is active scope:" << std::endl;
+        myChannel.uploadVideo("Advanced Templates Explained!");
+    } // bob goes out of scope here and is automatically destroyed!
+
+    std::cout << "\n-> Uploading video after Bob left (his weak_ptr expired):" << std::endl;
+    myChannel.uploadVideo("Smart Pointers in Depth!");
 
     return 0;
 }
