@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #7: Switch Statement
  * Efficient multi-way selection based on a single variable.
@@ -9,31 +7,31 @@ using namespace std;
 
 int main() {
     int day;
-    cout << "Enter day number (1-7): ";
-    cin >> day;
+    std::cout << "Enter day number (1-7): ";
+    std::cin >> day;
 
     switch (day) {
         case 1:
-            cout << "Monday" << endl;
+            std::cout << "Monday" << std::endl;
             break;
         case 2:
-            cout << "Tuesday" << endl;
+            std::cout << "Tuesday" << std::endl;
             break;
         case 3:
-            cout << "Wednesday" << endl;
+            std::cout << "Wednesday" << std::endl;
             break;
         case 4:
-            cout << "Thursday" << endl;
+            std::cout << "Thursday" << std::endl;
             break;
         case 5:
-            cout << "Friday" << endl;
+            std::cout << "Friday" << std::endl;
             break;
         case 6:
         case 7:
-            cout << "Weekend" << endl;
+            std::cout << "Weekend" << std::endl;
             break;
         default:
-            cout << "Invalid day" << endl;
+            std::cout << "Invalid day" << std::endl;
             break;
     }
 
