@@ -1,6 +1,5 @@
 #include <iostream>
-
-using namespace std;
+#include <string>
 
 /**
  * C++ REVISION #10: Functions
@@ -9,13 +8,13 @@ using namespace std;
 
 // Function Declaration (Prototype)
 int add(int a, int b);
-void greet(string name);
+void greet(std::string name);
 
 int main() {
     greet("Cristiano");
 
     int result = add(15, 30);
-    cout << "15 + 30 = " << result << endl;
+    std::cout << "15 + 30 = " << result << std::endl;
 
     return 0;
 }
@@ -25,6 +24,6 @@ int add(int a, int b) {
     return a + b;
 }
 
-void greet(string name) {
-    cout << "Welcome to the C++ Guide, " << name << "!" << endl;
+void greet(std::string name) {
+    std::cout << "Welcome to the C++ Guide, " << name << "!" << std::endl;
 }
