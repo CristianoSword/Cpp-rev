@@ -1,0 +1,4 @@
+--- C++ Save Data ---
+PlayerName: Arthur
+Level: 25
+Gold: 1540

@@ -20,7 +20,7 @@ export int add(int a, int b) {
     return a + b;
 }
 
-// This function is completely hidden (no 'export' keyword)
+// This function is completely hidden (no 'export' keyword) 
 int secretHelper(int x) {
     return x * 2;
 }
