@@ -23,7 +23,7 @@ int main() {
     std::cout << "Enter your full name: ";
     std::getline(std::cin, fullName);
 
-    std::cout << "Hello " << fullName << "! You are " << age << " years old." << std::endl;
+    std::cout << "Hello " << fullName << "! You are " << age << " years old." << '\n';
 
     return 0;
 }

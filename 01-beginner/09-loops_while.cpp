@@ -15,7 +15,7 @@ int main() {
         std::cout << count << " ";
         count--;
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 
     // do-while: execute once, then check condition.
     // If the user types something that is not an integer, std::cin sets failbit
@@ -27,12 +27,12 @@ int main() {
         if (!(std::cin >> choice)) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input, please enter an integer." << std::endl;
+            std::cout << "Invalid input, please enter an integer." << '\n';
             choice = -1; // anything != 0 keeps the loop alive
         }
     } while (choice != 0);
 
-    std::cout << "Exited successfully." << std::endl;
+    std::cout << "Exited successfully." << '\n';
 
     return 0;
 }

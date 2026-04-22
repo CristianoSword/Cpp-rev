@@ -15,8 +15,8 @@ int main() {
     const std::size_t count = std::size(scores);
 
     // Accessing elements (0-indexed)
-    std::cout << "First score: " << scores[0] << std::endl;
-    std::cout << "Last score: " << scores[count - 1] << std::endl;
+    std::cout << "First score: " << scores[0] << '\n';
+    std::cout << "Last score: " << scores[count - 1] << '\n';
 
     // Modifying an element
     scores[2] = 75;
@@ -26,11 +26,11 @@ int main() {
     for (std::size_t i = 0; i < count; ++i) {
         std::cout << scores[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 
     // Size of array (in bytes)
-    std::cout << "Total size in bytes: " << sizeof(scores) << std::endl;
-    std::cout << "Number of elements: " << count << std::endl;
+    std::cout << "Total size in bytes: " << sizeof(scores) << '\n';
+    std::cout << "Number of elements: " << count << '\n';
 
     return 0;
 }

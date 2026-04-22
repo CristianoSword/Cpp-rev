@@ -12,8 +12,8 @@ int main() {
     // constexpr: value evaluated at compile time
     constexpr int MAX_LEVEL = 100;
 
-    std::cout << "Value of PI: " << PI << std::endl;
-    std::cout << "Max Level: " << MAX_LEVEL << std::endl;
+    std::cout << "Value of PI: " << PI << '\n';
+    std::cout << "Max Level: " << MAX_LEVEL << '\n';
 
     // Uncommenting the next line would cause a compiler error:
     // PI = 3.14;

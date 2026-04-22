@@ -14,11 +14,11 @@ int main() {
     bool isProgrammer = true;
     std::string name = "Cristiano";
 
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Age: " << age << " years old" << std::endl;
-    std::cout << "Height: " << height << "m" << std::endl;
-    std::cout << "Initial: " << initial << std::endl;
-    std::cout << "Programmer: " << (isProgrammer ? "Yes" : "No") << std::endl;
+    std::cout << "Name: " << name << '\n';
+    std::cout << "Age: " << age << " years old" << '\n';
+    std::cout << "Height: " << height << "m" << '\n';
+    std::cout << "Initial: " << initial << '\n';
+    std::cout << "Programmer: " << (isProgrammer ? "Yes" : "No") << '\n';
 
     return 0;
 }

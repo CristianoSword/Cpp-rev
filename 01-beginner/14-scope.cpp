@@ -19,11 +19,11 @@ void increment() {
     staticCount++;
     localCount++;
 
-    std::cout << "Global: " << globalCount << " | Static: " << staticCount << " | Local: " << localCount << std::endl;
+    std::cout << "Global: " << globalCount << " | Static: " << staticCount << " | Local: " << localCount << '\n';
 }
 
 int main() {
-    std::cout << "Scope demonstration:" << std::endl;
+    std::cout << "Scope demonstration:" << '\n';
     increment();
     increment();
     increment();

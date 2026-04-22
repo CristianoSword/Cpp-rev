@@ -12,26 +12,26 @@ int main() {
 
     switch (day) {
         case 1:
-            std::cout << "Monday" << std::endl;
+            std::cout << "Monday" << '\n';
             break;
         case 2:
-            std::cout << "Tuesday" << std::endl;
+            std::cout << "Tuesday" << '\n';
             break;
         case 3:
-            std::cout << "Wednesday" << std::endl;
+            std::cout << "Wednesday" << '\n';
             break;
         case 4:
-            std::cout << "Thursday" << std::endl;
+            std::cout << "Thursday" << '\n';
             break;
         case 5:
-            std::cout << "Friday" << std::endl;
+            std::cout << "Friday" << '\n';
             break;
         case 6:
         case 7:
-            std::cout << "Weekend" << std::endl;
+            std::cout << "Weekend" << '\n';
             break;
         default:
-            std::cout << "Invalid day" << std::endl;
+            std::cout << "Invalid day" << '\n';
             break;
     }
 

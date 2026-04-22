@@ -14,7 +14,7 @@ int main() {
     greet("Cristiano");
 
     int result = add(15, 30);
-    std::cout << "15 + 30 = " << result << std::endl;
+    std::cout << "15 + 30 = " << result << '\n';
 
     return 0;
 }
@@ -25,5 +25,5 @@ int add(int a, int b) {
 }
 
 void greet(const std::string& name) {
-    std::cout << "Welcome to the C++ Guide, " << name << "!" << std::endl;
+    std::cout << "Welcome to the C++ Guide, " << name << "!" << '\n';
 }

@@ -6,17 +6,17 @@
  */
 
 int main() {
-    std::cout << "Counting from 1 to 10:" << std::endl;
+    std::cout << "Counting from 1 to 10:" << '\n';
 
     for (int i = 1; i <= 10; i++) {
         std::cout << i << " ";
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 
     // Nested for loop (Multiplication Table for 2)
-    std::cout << "Multiplication Table for 2:" << std::endl;
+    std::cout << "Multiplication Table for 2:" << '\n';
     for (int j = 1; j <= 10; j++) {
-        std::cout << "2 x " << j << " = " << 2 * j << std::endl;
+        std::cout << "2 x " << j << " = " << 2 * j << '\n';
     }
 
     return 0;

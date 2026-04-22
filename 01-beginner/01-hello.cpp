@@ -6,9 +6,10 @@
  */
 
 int main() {
-    // std::cout is used to print text to the console
-    // std::endl inserts a new line and flushes the buffer
-    std::cout << "Hello, C++ Revision!" << std::endl;
+    // std::cout is used to print text to the console.
+    // '\n' inserts a newline. Prefer it over std::endl, which also flushes
+    // the buffer and is usually unnecessary (and slower).
+    std::cout << "Hello, C++ Revision!" << '\n';
 
     return 0;
 }
