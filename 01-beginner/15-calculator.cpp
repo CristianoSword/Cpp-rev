@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath> // for std::fabs
 
 /**
  * C++ REVISION #15 PROJECT: Simple Calculator
@@ -32,7 +33,9 @@ int main() {
             std::cout << num1 * num2 << std::endl;
             break;
         case '/':
-            if (num2 != 0)
+            // Floating-point comparison with 0 is unreliable for very small
+            // values (e.g. 1e-12). Use an epsilon-based check instead.
+            if (std::fabs(num2) > 1e-9)
                 std::cout << num1 / num2 << std::endl;
             else
                 std::cout << "Error! Division by zero." << std::endl;
