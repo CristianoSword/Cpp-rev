@@ -23,6 +23,7 @@ public:
     // Simulating a heavy constructor
     HeavyData() {
         text = "This is a very long string that we don't want to copy multiple times.";
+        numbers.reserve(10000); // GOOD PRACTICE: Pre-allocate to avoid multiple reallocations
         for (int i = 0; i < 10000; i++) {
             numbers.push_back(i);
         }
@@ -62,25 +63,25 @@ int main() {
     std::cout << "\nRunning " << iterations << " iterations..." << std::endl;
 
     // --- Profiling BAD practice ---
-    auto startBad = std::chrono::high_resolution_clock::now();
+    auto startBad = std::chrono::steady_clock::now();
     
     long dummySum1 = 0;
     for (int i = 0; i < iterations; i++) {
         dummySum1 += processBad(myData); // Causes 1000 DEEP COPIES!
     }
     
-    auto endBad = std::chrono::high_resolution_clock::now();
+    auto endBad = std::chrono::steady_clock::now();
     auto durationBad = std::chrono::duration_cast<std::chrono::milliseconds>(endBad - startBad);
 
     // --- Profiling GOOD practice ---
-    auto startGood = std::chrono::high_resolution_clock::now();
+    auto startGood = std::chrono::steady_clock::now();
     
     long dummySum2 = 0;
     for (int i = 0; i < iterations; i++) {
         dummySum2 += processGood(myData); // 0 Copies made. Fast pointer pass.
     }
     
-    auto endGood = std::chrono::high_resolution_clock::now();
+    auto endGood = std::chrono::steady_clock::now();
     auto durationGood = std::chrono::duration_cast<std::chrono::microseconds>(endGood - startGood);
 
     // --- Results ---
