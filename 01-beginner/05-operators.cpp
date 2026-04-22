@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #5: Operators
  * Arithmetic, assignment, and comparison operators.
@@ -11,19 +9,19 @@ int main() {
     int a = 10, b = 3;
 
     // Arithmetic
-    cout << "Addition: " << a + b << endl;
-    cout << "Subtraction: " << a - b << endl;
-    cout << "Multiplication: " << a * b << endl;
-    cout << "Division: " << (double)a / b << endl; // Type casting for precision
-    cout << "Remainder (Modulo): " << a % b << endl;
+    std::cout << "Addition: " << a + b << std::endl;
+    std::cout << "Subtraction: " << a - b << std::endl;
+    std::cout << "Multiplication: " << a * b << std::endl;
+    std::cout << "Division: " << (double)a / b << std::endl; // Type casting for precision
+    std::cout << "Remainder (Modulo): " << a % b << std::endl;
 
     // Increment / Decrement
     a++;
-    cout << "After increment: " << a << endl;
-    
+    std::cout << "After increment: " << a << std::endl;
+
     // Comparison
     bool isEqual = (a == 11);
-    cout << "Is a equal to 11? " << (isEqual ? "Yes" : "No") << endl;
+    std::cout << "Is a equal to 11? " << (isEqual ? "Yes" : "No") << std::endl;
 
     return 0;
 }
