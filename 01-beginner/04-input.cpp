@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <string>
 
 /**
@@ -13,9 +14,11 @@ int main() {
     std::cout << "Enter your age: ";
     std::cin >> age;
 
-    // We can use std::cin.ignore() to clear the newline character
-    // before reading a string with std::getline
-    std::cin.ignore();
+    // After reading a number with >>, the trailing newline is still in the
+    // buffer. std::cin.ignore() without arguments only discards ONE character,
+    // which breaks if the user typed extra whitespace. The robust form ignores
+    // everything up to and including the next newline.
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Enter your full name: ";
     std::getline(std::cin, fullName);
