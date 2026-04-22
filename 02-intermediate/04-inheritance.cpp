@@ -1,29 +1,38 @@
 #include <iostream>
 #include <string>
+#include <utility>
 
 // Lesson 04: Inheritance
-// 
-// Inheritance allows us to create new classes (Derived/Child) based on 
-// existing classes (Base/Parent). 
-// 
-// Benefits: 
+//
+// Inheritance allows us to create new classes (Derived/Child) based on
+// existing classes (Base/Parent).
+//
+// Benefits:
 // 1. Code Reusability: Child classes inherit attributes and methods from the Parent.
 // 2. Specialization: Child classes can add new features or modify inherited ones.
 
 // Base Class (Parent)
 class Animal {
-protected: 
-    // 'protected' means it's private to the outside world, 
+protected:
+    // 'protected' means it's private to the outside world,
     // but accessible by child classes.
     std::string species;
 
 public:
-    void eat() {
-        std::cout << "This animal is eating..." << std::endl;
+    Animal() = default;
+    explicit Animal(std::string animalSpecies) : species(std::move(animalSpecies)) {}
+
+    // Virtual destructor: required whenever a class is intended to be used
+    // polymorphically (even if we are not deleting via base pointer here,
+    // it's the safe default for base classes).
+    virtual ~Animal() = default;
+
+    void eat() const {
+        std::cout << "This animal is eating..." << '\n';
     }
 
-    void sleep() {
-        std::cout << "Zzzzz..." << std::endl;
+    void sleep() const {
+        std::cout << "Zzzzz..." << '\n';
     }
 };
 
@@ -34,38 +43,40 @@ private:
     std::string breed;
 
 public:
-    Dog(std::string dogBreed) : breed(dogBreed) {
-        species = "Canine"; // Inherited protected member
+    // Explicitly initialize the Animal base class via its constructor.
+    explicit Dog(std::string dogBreed)
+        : Animal("Canine"), breed(std::move(dogBreed)) {}
+
+    void bark() const {
+        std::cout << "Woof! Woof! I am a " << breed << "." << '\n';
     }
 
-    void bark() {
-        std::cout << "Woof! Woof! I am a " << breed << "." << std::endl;
-    }
-
-    void showSpecies() {
-        std::cout << "Species: " << species << std::endl;
+    void showSpecies() const {
+        std::cout << "Species: " << species << '\n';
     }
 };
 
 // Another Derived Class
 class Cat : public Animal {
 public:
-    void meow() {
-        std::cout << "Meow! Feed me, human." << std::endl;
+    Cat() : Animal("Feline") {}
+
+    void meow() const {
+        std::cout << "Meow! Feed me, human." << '\n';
     }
 };
 
 int main() {
-    std::cout << "--- Lesson 04: Inheritance ---" << std::endl;
+    std::cout << "--- Lesson 04: Inheritance ---" << '\n';
 
-    std::cout << "\n--- Testing Dog ---" << std::endl;
+    std::cout << "\n--- Testing Dog ---" << '\n';
     Dog myDog("Golden Retriever");
     myDog.eat();   // Inherited from Animal
     myDog.sleep(); // Inherited from Animal
     myDog.bark();  // Unique to Dog
     myDog.showSpecies();
 
-    std::cout << "\n--- Testing Cat ---" << std::endl;
+    std::cout << "\n--- Testing Cat ---" << '\n';
     Cat myCat;
     myCat.eat();   // Inherited from Animal
     myCat.meow();  // Unique to Cat
