@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 /**
  * C++ REVISION #11: Arrays
  * Storing multiple values of the same type in a contiguous memory block.
@@ -12,22 +10,22 @@ int main() {
     int scores[5] = {90, 85, 70, 95, 80};
 
     // Accessing elements (0-indexed)
-    cout << "First score: " << scores[0] << endl;
-    cout << "Last score: " << scores[4] << endl;
+    std::cout << "First score: " << scores[0] << std::endl;
+    std::cout << "Last score: " << scores[4] << std::endl;
 
     // Modifying an element
     scores[2] = 75;
 
     // Iterating through an array
-    cout << "All scores: ";
+    std::cout << "All scores: ";
     for (int i = 0; i < 5; i++) {
-        cout << scores[i] << " ";
+        std::cout << scores[i] << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
 
     // Size of array (in bytes)
-    cout << "Total size in bytes: " << sizeof(scores) << endl;
-    cout << "Number of elements: " << sizeof(scores) / sizeof(scores[0]) << endl;
+    std::cout << "Total size in bytes: " << sizeof(scores) << std::endl;
+    std::cout << "Number of elements: " << sizeof(scores) / sizeof(scores[0]) << std::endl;
 
     return 0;
 }
